@@ -10,8 +10,11 @@ Theoretically support mainstream browsers and older versions of IE.
 getUploadImgPreviewInfo(option, callback)
 
   params: option(object):  {file: object(*), ieUseClarityPic: boolean }  //file 是指上传文件的input对象 ,ieUseClarityPic是决定低版本ie是否使用透明图片
-          callback(function): function (result) { //result: [{src: string, filter: string}]
-          }
+  
+  
+  
+  callback(function): function (result) { //result: [{src: string, filter: string}]
+  }
           
  传入指定参数后，通过回调函数可以获取到相关的信息，并没有做是否为图片格式的验证，仅仅用来获取所产生的预览路径src,filter是为ie低版本所提供的，当filter不为空时需要进行设置要显示图片对象的style.filter = filter。
  
