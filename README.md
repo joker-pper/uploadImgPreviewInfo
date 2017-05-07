@@ -12,6 +12,8 @@ getUploadImgPreviewInfo
           callback(function): function (result) { //result: [{src: string, filter: string}]
           }
           
- #  传入指定参数后，通过回调函数可以获取到相关的信息，并没有做是否为图片格式的验证，仅仅用来获取所产生的预览路径src,filter是为ie低版本所提供的，当filter不为空时需要进行设置要显示图片对象的style.filter = filter。
- #  该插件使用原生的方式，不需要其他插件也能独立使用。
- #  支持返回多个文件的信息（ie10及以上才支持多文件上传，需要浏览器的支持）
+ 传入指定参数后，通过回调函数可以获取到相关的信息，并没有做是否为图片格式的验证，仅仅用来获取所产生的预览路径src,filter是为ie低版本所提供的，当filter不为空时需要进行设置要显示图片对象的style.filter = filter。
+ 
+ 该插件使用原生的方式，不需要其他插件也能独立使用。
+  
+  支持返回多个文件的信息（ie10及以上才支持多文件上传，需要浏览器的支持）
