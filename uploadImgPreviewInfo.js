@@ -59,8 +59,8 @@ function getUploadImgPreviewInfo(option, callback) {
                 }
                 file.select();
                 var reallocalpath = document.selection.createRange().text;
-                if (img.currentStyle["filter"] != "none") {  //when it is none, it seems that not support filter
-
+                var filterStyle = img.currentStyle["filter"];
+                if (filterStyle && filterStyle != "none") {  //when it is none, it seems that not support filter
                     if(ieUseClarityPic) {
                         src = 'data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==';
                         filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale',src=\"" + reallocalpath + "\")";
@@ -92,7 +92,7 @@ function getUploadImgPreviewInfo(option, callback) {
 function handleImgValue(img, src, filter) {
     if(img) {
         img.src = src;
-        filter ? img.style.filter = filter :"";
+        filter ? img.style.filter = filter : "";
     }
 }
 
