@@ -78,3 +78,17 @@ function getUploadImgPreviewInfo(option, callback) {
         }, 50);
     }
 }
+
+
+/**
+ * to setting the img element value
+ * @param img  --- img element
+ * @param src  --- the src result
+ * @param filter --- the filter result
+ */
+function handleImgValue(img, src, filter) {
+    if(img) {
+        img.src = src;
+        filter ? img.style.filter = filter :"";
+    }
+}

@@ -1,0 +1,78 @@
+
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+  <title>
+    23333
+  </title>
+
+  <style type="text/css">
+    .img-preview img {
+        display: block;
+    }
+
+    .none {
+      display: none;
+    }
+
+  </style>
+
+</head>
+<body>
+
+<div class="form-group">
+    <label for="img">图片</label>
+    <input type="file" id="img" name="img" multiple>
+</div>
+
+<div class="form-group none">
+    <label>图片预览</label>
+    <div class="img-preview">
+    </div>
+</div>
+
+
+
+<script src="http://code.jquery.com/jquery-1.9.0.js"></script>
+<script src="uploadImgPreviewInfo.js"></script>
+
+<script>
+    $(function () {
+        $("input#img").change(function () {
+            var file = this;
+            var result = getUploadImgPreviewInfo({
+                file: file
+            }, function (result) {
+
+                if(result && result.length > 0) {
+                    var $preview = $(".img-preview");
+                    for(var i in result) {
+                        $preview.find("img:eq(" +  (result.length - 1)  +")").nextAll().remove();  //将之后的元素都移除
+
+                        var $img = $preview.find("img:eq(" + i +")");
+                        if(!$img[0]) {
+                            $img = $("<img />");
+                            $preview.append($img);
+                        }
+                        var src = result[i].src;
+                        var filter = result[i].filter;
+                        handleImgValue($img[0], src, filter);
+                    }
+                    $(".img-preview").parent().removeClass("none");
+                }
+            });
+        /*    var $img = $(".img-preview img"); //显示图片的img对象
+
+            $img.load(function () {  //如果能加载则移除隐藏的class
+                $(".img-preview").parent().removeClass("none");
+            });*/
+        });
+    });
+
+</script>
+
+</body>
+
+</html>
+
