@@ -7,7 +7,8 @@ Theoretically support mainstream browsers and older versions of IE.
 
 # how to use ?
 
-getUploadImgPreviewInfo
+getUploadImgPreviewInfo(option, callback)
+
   params: option(object):  {file: object(*), ieUseClarityPic: boolean }  //file 是指上传文件的input对象 ,ieUseClarityPic是决定低版本ie是否使用透明图片
           callback(function): function (result) { //result: [{src: string, filter: string}]
           }
