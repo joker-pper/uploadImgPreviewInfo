@@ -1,3 +1,8 @@
+/**
+ * callback can get about the img's info, you can to do something in it.
+ * @param option  --- {file: object, ieUseClarityPic: ieUseClarityPic}
+ * @param callback --- function(result){}  //result [{src: string, filter: string}]
+ */
 function getUploadImgPreviewInfo(option, callback) {
    var file = option.file;  //the input type is file's object
 
@@ -46,9 +51,7 @@ function getUploadImgPreviewInfo(option, callback) {
             if (document.selection && typeof document.selection.createRange != "undefined") {
                 var imgId = "img.pp.preview";
                 var img = document.getElementById(imgId);
-                var first = false;
                 if(img == null) {
-                    first = true;
                     var img = document.createElement("img");
                     img.id = imgId;
                     img.style.display = "none";
@@ -90,5 +93,25 @@ function handleImgValue(img, src, filter) {
     if(img) {
         img.src = src;
         filter ? img.style.filter = filter :"";
+    }
+}
+
+/**
+ * when this img load success and it's clientHeight or clientWidth gt 0, will to execute the callback
+ * @param img
+ * @param callback  --- function(event, img){}
+ */
+function imgLoaded(img, callback) {
+    if(img) {
+        try {
+            img.onload = function(event) {
+                if(img.clientWidth > 0 || img.clientHeight > 0) {
+                    if(callback && typeof callback == "function") {
+                        callback(event, img);
+                    }
+                }
+            }
+        } catch (e) {
+        }
     }
 }

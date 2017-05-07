@@ -2,9 +2,8 @@
 <html>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
   <title>
-    23333
+    demo
   </title>
 
   <style type="text/css">
@@ -33,18 +32,20 @@
 </div>
 
 
-
 <script src="http://code.jquery.com/jquery-1.9.0.js"></script>
 <script src="uploadImgPreviewInfo.js"></script>
 
 <script>
     $(function () {
         $("input#img").change(function () {
+            $(".img-preview").parent().addClass("none");
+
             var file = this;
             var result = getUploadImgPreviewInfo({
                 file: file
             }, function (result) {
 
+                var loadedStr = "";
                 if(result && result.length > 0) {
                     var $preview = $(".img-preview");
                     for(var i in result) {
@@ -57,10 +58,17 @@
                         }
                         var src = result[i].src;
                         var filter = result[i].filter;
-                        handleImgValue($img[0], src, filter);
+                        handleImgValue($img[0], src, filter);  //赋值
+
+                        imgLoaded($img[0], function(event, img) {
+                            if(console) {
+                                console.log("img loaded success");
+                            }
+                        })
                     }
                     $(".img-preview").parent().removeClass("none");
                 }
+
             });
         /*    var $img = $(".img-preview img"); //显示图片的img对象
 
